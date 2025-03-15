@@ -15,9 +15,6 @@ import { products } from "../service/Constantes";
 import { db } from "../config/firebaseConfig";
 import { useState } from "react";
 
-
-
-
 const buttonStyle = {
   padding: "10px 20px",
   backgroundColor: "blue",
@@ -29,8 +26,7 @@ const buttonStyle = {
 
 export const Header = () => {
   const { user, Login, Logout } = useUser();
-  console.log('user :', user);
-
+  console.log("user :", user);
 
   const handleLoginLogout = () => {
     if (user?.isLoggedIn) {
@@ -48,18 +44,16 @@ export const Header = () => {
       for (const product of products) {
         await addDoc(productRef, product);
       }
-      console.log("Productos cargados correctamente en firestore")
-
+      console.log("Productos cargados correctamente en firestore");
     } catch (error) {
-      console.log("Error al cargar los productos:", error)
+      console.log("Error al cargar los productos:", error);
     }
-  }
+  };
 
   const uploadProductos = async () => {
     try {
       const productRef = collection(db, "ProductosBlanqueria");
       const snapshot = await getDocs(productRef);
-
 
       snapshot.forEach(async (docSnap) => {
         const docRef = doc(db, "ProductosBlanqueria", docSnap.id);
@@ -91,11 +85,11 @@ export const Header = () => {
   };
 
   // ELIMINAR POR ID
-  const [productId, setProductId] = useState(""); 
+  const [productId, setProductId] = useState("");
   const deleteProductById = async (id) => {
     try {
-      const docRef = doc(db, "ProductosMichis", id); 
-      await deleteDoc(docRef); 
+      const docRef = doc(db, "ProductosMichis", id);
+      await deleteDoc(docRef);
       console.log(`Producto con ID ${id} eliminado exitosamente.`);
     } catch (error) {
       console.error("Error al eliminar el producto:", error);
@@ -105,80 +99,76 @@ export const Header = () => {
   // ELIMINAR TODOS CON BATCH
   const deleteAllProducts = async () => {
     try {
-      const batch = writeBatch(db); 
+      const batch = writeBatch(db);
       const productsRef = collection(db, "ProductosMichis");
       const snapshot = await getDocs(productsRef);
 
       snapshot.forEach((docSnap) => {
-        batch.delete(docSnap.ref); 
+        batch.delete(docSnap.ref);
       });
 
-      await batch.commit(); 
+      await batch.commit();
       console.log("Todos los productos han sido eliminados con batch.");
     } catch (error) {
       console.error("Error al eliminar los productos con batch:", error);
     }
   };
 
-// Obtener productos cuyo precio sea mayor a $500.
-const getExpensiveProducts = async () => {
-  try {
-    const productsRef = collection(db, "ProductosMichis");
-    const q = query(productsRef, where("price", ">", 500)); 
-    const snapshot = await getDocs(q); 
+  // Obtener productos cuyo precio sea mayor a $500.
+  const getExpensiveProducts = async () => {
+    try {
+      const productsRef = collection(db, "ProductosMichis");
+      const q = query(productsRef, where("price", ">", 500));
+      const snapshot = await getDocs(q);
 
-    const expensiveProducts = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+      const expensiveProducts = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
-    console.log("Productos caros:", expensiveProducts);
-  } catch (error) {
-    console.error("Error al obtener productos caros:", error);
-  }
-};
-
-//  Obtener productos con stock verdadero y amigables.
-const getFilteredProducts = async () => {
-  try {
-    const productsRef = collection(db, "ProductosMichis");
-    const q = query(
-      productsRef,
-      where("stock", "==", true),
-      where("amigables", "==", true) 
-    );
-    const snapshot = await getDocs(q);
-
-    const filteredProducts = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-
-    console.log("Productos filtrados:", filteredProducts);
-  } catch (error) {
-    console.error("Error al obtener productos filtrados:", error);
-  }
-};
-
-// obtener producto por ID
-const getProductById = async (id) => {
-  try {
-    const docRef = doc(db, "ProductosMichis", id); 
-    const docSnap = await getDoc(docRef); 
-
-    if (docSnap.exists()) {
-      console.log("Producto encontrado:", docSnap.data());
-    } else {
-      console.log("No se encontró el producto con ese ID");
+      console.log("Productos caros:", expensiveProducts);
+    } catch (error) {
+      console.error("Error al obtener productos caros:", error);
     }
-  } catch (error) {
-    console.error("Error al obtener producto por ID:", error);
-  }
-};
+  };
 
+  //  Obtener productos con stock verdadero y amigables.
+  const getFilteredProducts = async () => {
+    try {
+      const productsRef = collection(db, "ProductosMichis");
+      const q = query(
+        productsRef,
+        where("stock", "==", true),
+        where("amigables", "==", true)
+      );
+      const snapshot = await getDocs(q);
 
+      const filteredProducts = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
 
+      console.log("Productos filtrados:", filteredProducts);
+    } catch (error) {
+      console.error("Error al obtener productos filtrados:", error);
+    }
+  };
 
+  // obtener producto por ID
+  const getProductById = async (id) => {
+    try {
+      const docRef = doc(db, "ProductosMichis", id);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Producto encontrado:", docSnap.data());
+      } else {
+        console.log("No se encontró el producto con ese ID");
+      }
+    } catch (error) {
+      console.error("Error al obtener producto por ID:", error);
+    }
+  };
 
   return (
     <>
@@ -200,9 +190,7 @@ const getProductById = async (id) => {
           {user?.isLoggedIn ? "Logout" : "Login"}
         </button>
 
-        <h1 className="nombre-sitio">
-          Bienvenido a Blanqueria calixto
-        </h1>
+        <h1 className="nombre-sitio">Bienvenido a Blanqueria calixto</h1>
 
         {user?.isLoggedIn && (
           <>
@@ -217,7 +205,6 @@ const getProductById = async (id) => {
               Bienvenido {user?.name}
             </p>
             <div>
-
               {/*-------BOTON PARA CARGAR PRODUCTOS------ */}
               <button
                 onClick={cargarProducts}
@@ -295,8 +282,8 @@ const getProductById = async (id) => {
               >
                 Eliminar todos los productos con Batch
               </button>
-               {/*--------- SENTENCIAS DE QUERY Y WHERE ----------*/}
-   <button onClick={getExpensiveProducts} style={buttonStyle}>
+              {/*--------- SENTENCIAS DE QUERY Y WHERE ----------*/}
+              <button onClick={getExpensiveProducts} style={buttonStyle}>
                 Productos Mayor $500
               </button>
               <button

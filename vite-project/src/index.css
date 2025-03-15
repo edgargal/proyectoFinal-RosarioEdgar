@@ -1,27 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Jaro:opsz@6..72&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Guerrilla&family=Vesper+Libre:wght@400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=Jaro:opsz@6..72&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Guerrilla&family=Vesper+Libre:wght@400;500;700;900&display=swap");
 
-.text-center{
+.text-center {
   font-size: 50px;
-  
 }
 
-.nombre-sitio{
-  position:absolute;
+.nombre-sitio {
+  position: absolute;
   left: 40%;
-  
 }
 
 body {
   font-family: "Poppins", sans-serif;
-
 }
-
 
 .nav-principal {
   background-color: #333;
   color: white;
   padding: 0.5rem;
-
 }
 
 nav h1 {
@@ -30,7 +25,6 @@ nav h1 {
   margin-left: 20px;
   position: relative;
   bottom: 5px;
-
 }
 
 nav ul {
@@ -50,7 +44,6 @@ nav ul li {
 nav ul li a {
   color: white;
   text-decoration: none;
-
 }
 
 .cart-widget {
@@ -58,14 +51,11 @@ nav ul li a {
   margin-left: 100;
   position: relative;
   bottom: 5px;
-
 }
 
 h2 {
   color: #333;
 }
-
-
 
 /*------------------------FOOTER-----------------------------------------*/
 .site-footer {
@@ -84,7 +74,6 @@ h2 {
     text-align: left;
   }
 
-  
   .grid-footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -92,12 +81,12 @@ h2 {
   }
 }
 
-.grid-footer>div {
+.grid-footer > div {
   margin-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
-  .grid-footer>div {
+  .grid-footer > div {
     margin-bottom: 0;
   }
 }
@@ -117,7 +106,6 @@ h2 {
   text-align: center;
   margin-top: 5rem;
 }
-
 
 /*------------------------------------formulario----------------------------------*/
 
@@ -177,51 +165,51 @@ h2 {
 }
 .btn:hover {
   background-color: #769c02;
-  cursor: pointer;}
+  cursor: pointer;
+}
 
+/*----------------- ESTILOS DEL CART-------------------- */
 
-  /*----------------- ESTILOS DEL CART-------------------- */
+.cart-widget {
+  position: fixed;
+  top: 150px;
+  right: 10px;
+  background-color: #961d1d;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+}
 
-  .cart-widget {
-    position: fixed;
-    top: 150px;
-    right: 10px;
-    background-color: #961d1d;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-  }
-  
-  .cart-widget span {
-    margin-right: 10px;
-  }
-  
-  .cart-details {
-    margin-top: 10px;
-  }
-  
-  .cart-details ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .cart-details li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-  }
-  
-  .cart-details button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    border-radius: 5px;
-  }
+.cart-widget span {
+  margin-right: 10px;
+}
+
+.cart-details {
+  margin-top: 10px;
+}
+
+.cart-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cart-details li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.cart-details button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 5px;
+}
 
 /*-------------------LISTADO DE PRODUCTOS------------------------ */
 .contenido-principal {
@@ -231,13 +219,13 @@ h2 {
   .listado-productos {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    
+
     gap: 2rem; /*separacion hacia todos los sentidos*/
   }
   .producto:nth-child(1) {
     grid-column-start: 2;
     grid-column-end: 6;
-      
+
     display: grid;
     grid-template-columns: 3fr 1fr;
   }
@@ -311,10 +299,68 @@ h2 {
   font-weight: 900;
 }
 
-
 /*-----------------sobre nosotros--------------------*/
 
-.texto-nosotros{
+.texto-nosotros {
   margin: 100px 0;
   font-weight: 800;
+}
+
+/*---------------header--------------------------*/
+
+.listado-productosP {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Se ajusta automáticamente */
+  gap: 20px; /* Espacio entre las cards */
+  justify-content: center;
+  padding: 20px;
+}
+
+.productoP {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.productoP:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.productoP img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.texto-productoP {
+  margin-top: 10px;
+}
+
+.precioP {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.btnP {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btnP:hover {
+  background-color: #0056b3;
 }

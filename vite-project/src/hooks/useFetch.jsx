@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore/lite";
+import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "../config/firebaseConfig";
 
@@ -10,20 +10,17 @@ const useFetch = (nombreColeccion) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        
         console.log("Colección solicitada:", nombreColeccion);
 
         if (!nombreColeccion) {
           throw new Error("El nombre de la colección no puede estar vacío");
         }
 
-       
         const productRef = collection(db, nombreColeccion);
         console.log("Referencia a la colección:", productRef);
 
         const snapshot = await getDocs(productRef);
 
-       
         const productsList = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -34,7 +31,7 @@ const useFetch = (nombreColeccion) => {
         setLoading(false);
       } catch (error) {
         console.log("Error al realizar la consulta:", error);
-        setError('Error al consultar los datos');
+        setError("Error al consultar los datos");
         setLoading(false);
       }
     };
